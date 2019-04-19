@@ -10,6 +10,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         setTitle(R.string.aboutTitle);
-
+        setTitle("hai how are you");
+        //updated successfully
     }
 }
