@@ -59,14 +59,8 @@ public class SignupActivity extends AppCompatActivity {
                     ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                     home.edit().putString("home", am.getRunningTasks(1).get(0).topActivity.getPackageName()).apply();
                     finish();
-                    //Toast.makeText(SignupActivity.this, am.getRunningTasks(1).get(0).topActivity.getPackageName(), Toast.LENGTH_SHORT).show();
-                    /*Intent intent = new Intent(getApplicationContext(), TaskList.class);
-                    startActivity(intent);
-                    finish();*/
-                    // Go TO Next
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.pinwrg), Toast.LENGTH_SHORT).show();
-                    // Stay Here
                 }
             }
         });

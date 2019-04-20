@@ -1,10 +1,8 @@
 package com.nizam.training.parentalcontrol;
 
 import android.accessibilityservice.AccessibilityService;
-import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -24,7 +22,7 @@ public class SearchRunningApp2 extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         boolean app_state = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("app_off", false);
-        if (app_state) {
+        if (!app_state) {
             String runningPackName = event.getPackageName().toString();
             SharedPreferences sharedPreferences = getSharedPreferences("BlockAppTime", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -66,16 +64,7 @@ public class SearchRunningApp2 extends AccessibilityService {
                     } else {
                         try {
 
-                            final AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                            Intent i7 = new Intent(getApplicationContext(), SearchRunningApp.class);
-                            PendingIntent ServiceManagementIntent;
 
-                            ServiceManagementIntent = PendingIntent.getBroadcast(getApplicationContext(), 11, i7, 0);
-                            //larmManager.cancel;
-                            //alarmManager.cancel(ServiceManagementIntent);
-                          /*  alarmManager.set(AlarmManager.ELAPSED_REALTIME,
-                                    SystemClock.elapsedRealtime() + (timer - sharedPreferences.getInt("timeUsed" + pack_name, 0)) * 1000,
-                                    ServiceManagementIntent);*/
 
                         } catch (Exception e) {
                             Log.i("AlarmManager", "Exception : " + e);
@@ -135,22 +124,27 @@ public class SearchRunningApp2 extends AccessibilityService {
 
     private void blockApp() {
         String option = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("block_method", "0");
-        if (option.equals("1")) {
-            startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME));
-        } else if (option.equals("2")) {
-            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            PendingIntent contentPendingIntent = PendingIntent.getActivity
-                    (this, 0, new Intent(this, BlockActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
-                    .setContentTitle("App blocked")
-                    .setContentText("can't use this now")
-                    .setContentIntent(contentPendingIntent)
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setDefaults(NotificationCompat.DEFAULT_ALL)
-                    .setAutoCancel(true);
-            manager.notify(0, builder.build());
-        } else
-            startActivity(new Intent(getApplicationContext(), BlockActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        switch (option) {
+            case "1":
+                startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                break;
+            case "2":
+                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                PendingIntent contentPendingIntent = PendingIntent.getActivity
+                        (this, 0, new Intent(this, BlockActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
+                        .setContentTitle("App blocked")
+                        .setContentText("can't use this now")
+                        .setContentIntent(contentPendingIntent)
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setDefaults(NotificationCompat.DEFAULT_ALL)
+                        .setAutoCancel(true);
+                manager.notify(0, builder.build());
+                break;
+            default:
+                startActivity(new Intent(getApplicationContext(), BlockActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                break;
+        }
     }
 
     @Override

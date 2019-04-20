@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.nizam.training.parentalcontrol">
 
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.Manifest.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -24,18 +24,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity android:name=".AboutActivity" />
+        <activity
+            android:name=".AboutActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".SettingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
-        <receiver
-            android:name=".BluetoothReceiver"
-            android:enabled="true"
-            android:exported="true" />
 
         <activity android:name=".AppHistoryActivity" />
 
@@ -61,17 +58,6 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".MyJobService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name=".BlockService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="@string/ConfirmPin" />
 
         <activity android:name=".AppSettingActivity">
             <intent-filter>
@@ -121,20 +107,6 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
-        <receiver
-            android:name=".MyReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:permission=""
-            tools:ignore="ExportedReceiver">
-            <intent-filter>
-                <action android:name="StartupReceiver_Manual_Start" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name=".SearchRunningApp" />
 
         <service
             android:name=".SearchRunningApp2"

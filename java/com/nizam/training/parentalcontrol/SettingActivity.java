@@ -17,15 +17,11 @@ public class SettingActivity extends AppCompatActivity {
     Bundle save;
 
     public static void setLanguage(Context ct, Resources res) {
-        Locale myLocale = new Locale(PreferenceManager.getDefaultSharedPreferences(ct).getString("lang_select", "ta"));
+        Locale myLocale = new Locale(PreferenceManager.getDefaultSharedPreferences(ct).getString("lang_select", "en"));
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
-        if (i == 5) {
-            //ddd
-        }
-
     }
 
     @Override

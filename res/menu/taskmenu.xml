@@ -7,11 +7,6 @@
         android:title="@string/add_task"
         app:showAsAction="withText" />
     <item
-        android:id="@+id/tm2"
-        android:icon="@drawable/ic_control_point_black_24dp"
-        android:title="@string/dev_con"
-        app:showAsAction="withText" />
-    <item
         android:id="@+id/tm3"
         android:icon="@drawable/ic_history_black_24dp"
         android:title="@string/app_history"
@@ -20,5 +15,10 @@
         android:id="@+id/tm4"
         android:icon="@drawable/ic_settings_black_24dp"
         android:title="@string/settings"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/tm5"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/aboutTitle"
         app:showAsAction="withText" />
 </menu>

@@ -75,9 +75,3 @@ public class HistoryDB extends SQLiteOpenHelper {
         dbb.close();
     }
 }
-
-/*
-getPackageManager().getApplicationLabel(getPackageManager()
-                    .getApplicationInfo(event.getPackageName().toString(), PackageManager.GET_META_DATA)).toString();
-            appName = getPackageManager().getApplicationLabel(getPackageManager().getApplicationInfo(event.getPackageName().toString(), PackageManager.GET_META_DATA)).toString();
-*/

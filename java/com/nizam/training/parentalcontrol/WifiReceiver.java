@@ -26,17 +26,7 @@ public class WifiReceiver extends BroadcastReceiver {
         if (action.equals(TelephonyManager.ACTION_PHONE_STATE_CHANGED)) {
             try {
                 TelephonyManager manager = (TelephonyManager) aContext.getSystemService(Context.TELEPHONY_SERVICE);
-                //  TelecomManager telecomManager=(TelecomManager)aContext.getSystemService(TELECOM_SERVICE);
-                //android.telecom.Call call=aContext.getSystemService(Call.class);
-                //   Tele;
-                // manager.
 
-               /* Class c = Class.forName(manager.getClass().getName());
-                Method m = c.getDeclaredMethod("getITelephony");
-                m.setAccessible(true);*/
-               /* ITelephony telephony = (ITelephony)m.invoke(manager);
-                Log.i("Phone","blocked");
-                telephony.endCall();t*/
             } catch (Exception e) {
                 Log.d("mnkException", e.getMessage());
             }

@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class TaskList extends AppCompatActivity {
-    MyDB myDB;
     RecyclerView rv;
     FloatingActionButton fa;
 
@@ -55,15 +54,14 @@ public class TaskList extends AppCompatActivity {
             case R.id.tm1:
                 start(AppList.class);
                 break;
-            case R.id.tm2:
-                start(DeviceControlActivity.class);
-                break;
             case R.id.tm3:
                 start(AppHistoryActivity.class);
                 break;
             case R.id.tm4:
                 start(SettingActivity.class);
                 break;
+            case R.id.tm5:
+                start(AboutActivity.class);
         }
         return true;
     }
@@ -122,7 +120,6 @@ class LoadTask extends AsyncTask<Void, Void, TaskAdapter> {
         ArrayList<Drawable> icons = new ArrayList<>();
         ArrayList<Integer> isp, hd, md, sth, stm, eth, etm;
         taskAppName = new ArrayList<>();
-        packs = new ArrayList<>();
         isp = new ArrayList<>();
         hd = new ArrayList<>();
         md = new ArrayList<>();

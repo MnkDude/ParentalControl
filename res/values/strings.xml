@@ -79,5 +79,8 @@
     <string name="shutDesc">Check if you want to stop controlling application using KiddieGuard</string>
     <string name="app_block_method">Choose how app should block</string>
     <string name="blockapp">Show block app screen</string>
+    <string name="listapp">Listing apps</string>
+    <string name="listappdesc">Please wait, we are listing your apps...</string>
+    <string name="source_code">Source Code</string>
 
 </resources>

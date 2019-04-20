@@ -41,26 +41,6 @@ public class AppSettingActivity extends AppCompatActivity {
     boolean weekSelector;
 
     static String timeFormat(int hourOfDay, int minute) {
-        /*
-          if (cl.get(Calendar.HOUR) < 10)   // hour = (cl.get(Calendar.HOUR) < 10) ? "0" + cl.get(Calendar.HOUR) : ""+ cl.get(Calendar.HOUR);
-                hour = "0" + cl.get(Calendar.HOUR); // 00:00:00 PM AM
-            else
-                hour = "" + cl.get(Calendar.HOUR);
-            if (cl.get(Calendar.MINUTE) < 10)  //minute = (cl.get(Calendar.MINUTE) < 10) ? "0" + cl.get(Calendar.MINUTE) : ""+ cl.get(Calendar.MINUTE);
-                minute = "0" + cl.get(Calendar.MINUTE);
-            else
-                minute = "" + cl.get(Calendar.MINUTE);
-            if (cl.get(Calendar.SECOND) < 10)  //second = (cl.get(Calendar.SECOND) < 10) ? "0" + cl.get(Calendar.SECOND) : ""+ cl.get(Calendar.SECOND);
-                second = "0" + cl.get(Calendar.SECOND);
-            else
-                second = "" + cl.get(Calendar.SECOND);
-            time = hour + ":" + minute + ":" + second;
-            if (cl.get(Calendar.AM_PM) == 0)
-                time += " AM";
-            else
-                time += " PM";
-
-         */
         String am_pm = "AM";
         if (hourOfDay > 12) {
             hourOfDay = hourOfDay - 12;
@@ -70,10 +50,6 @@ public class AppSettingActivity extends AppCompatActivity {
         } else if (hourOfDay == 0) {
             hourOfDay = 12;
         }
-        /* String hh = (hourOfDay < 10) ? "0" + hourOfDay : ""+ hourOfDay;
-         String mm = (minute < 10) ? "0" + hourOfDay : ""+ hourOfDay;
-         String ss = (minute  < 10) ? "0" + hourOfDay : ""+ hourOfDay;*/
-
         return hourOfDay + ":" + minute + ":" + am_pm;
     }
 
@@ -417,20 +393,12 @@ public class AppSettingActivity extends AppCompatActivity {
                     j++;
                 if (j == 0 && i == 6)
                     myDB.deleteRow(s);
-                if (s.equals("wifi") && j == 0) ;//unregisterReceiver(wifiReceiver);
             }
         }
     }
 
     private void startAnimations() {
-        Animation rotate = AnimationUtils.loadAnimation(this, R.anim.anim);
-        Animation bounce = AnimationUtils.loadAnimation(this, R.anim.boune);
         Animation fadein = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        Animation lay = AnimationUtils.loadAnimation(this, R.anim.animation_popup_enter);
-        rotate.reset();
-        fadein.reset();
-        lay.reset();
-        bounce.reset();
-        relativeLayout.startAnimation(bounce);
+        relativeLayout.startAnimation(fadein);
     }
 }

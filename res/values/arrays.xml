@@ -9,8 +9,8 @@
         <item>ta</item>
     </string-array>
     <string-array name="block_method">
-        <item>Close Application immediately</item>
         <item>Show block app screen</item>
+        <item>Close Application immediately</item>
         <item>Trigger Notification</item>
     </string-array>
     <string-array name="block_method_values">
