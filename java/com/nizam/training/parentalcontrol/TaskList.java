@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,14 +30,12 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class TaskList extends AppCompatActivity {
     RecyclerView rv;
-    FloatingActionButton fa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_list);
         setTitle(R.string.tasklist);
-        fa = findViewById(R.id.floatingActionButton);
     }
 
     @Override
@@ -60,10 +57,19 @@ public class TaskList extends AppCompatActivity {
             case R.id.tm4:
                 start(SettingActivity.class);
                 break;
+            case R.id.tm6:
+                start(HelpActivity.class);
+                break;
             case R.id.tm5:
                 start(AboutActivity.class);
+                break;
         }
         return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override

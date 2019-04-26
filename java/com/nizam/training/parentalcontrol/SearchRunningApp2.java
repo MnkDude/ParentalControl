@@ -1,12 +1,11 @@
 package com.nizam.training.parentalcontrol;
 
 import android.accessibilityservice.AccessibilityService;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
@@ -21,6 +20,8 @@ public class SearchRunningApp2 extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        Log.i("TopAct", am.getRunningTasks(1).get(0).topActivity.flattenToShortString());
         boolean app_state = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("app_off", false);
         if (!app_state) {
             String runningPackName = event.getPackageName().toString();
@@ -64,8 +65,6 @@ public class SearchRunningApp2 extends AccessibilityService {
                     } else {
                         try {
 
-
-
                         } catch (Exception e) {
                             Log.i("AlarmManager", "Exception : " + e);
                         }
@@ -90,6 +89,14 @@ public class SearchRunningApp2 extends AccessibilityService {
             }
             editor.putString("prevApp", runningPackName).apply();
             editor.putInt("prevTime", curTime).apply();
+            SharedPreferences sf = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            if (am.getRunningTasks(1).get(0).topActivity.flattenToShortString().equals("com.android.settings/.DeviceAdminAdd")) {
+                sf.edit().putInt("unins_close", sf.getInt("unins_close", 0) + 1).apply();
+                int unins_on_off = sf.getInt("unins_close", 0);
+                if (unins_on_off > 1) {
+                    startActivity(new Intent(Intent.ACTION_MAIN).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addCategory(Intent.CATEGORY_HOME));
+                }
+            }
         }
     }
 
@@ -127,19 +134,6 @@ public class SearchRunningApp2 extends AccessibilityService {
         switch (option) {
             case "1":
                 startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                break;
-            case "2":
-                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                PendingIntent contentPendingIntent = PendingIntent.getActivity
-                        (this, 0, new Intent(this, BlockActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
-                        .setContentTitle("App blocked")
-                        .setContentText("can't use this now")
-                        .setContentIntent(contentPendingIntent)
-                        .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setDefaults(NotificationCompat.DEFAULT_ALL)
-                        .setAutoCancel(true);
-                manager.notify(0, builder.build());
                 break;
             default:
                 startActivity(new Intent(getApplicationContext(), BlockActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));

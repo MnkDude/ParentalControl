@@ -75,8 +75,9 @@ public class ListAppAdapter extends RecyclerView.Adapter<ListAppAdapter.MyBuilde
             }
         });
         holder.imageView.setImageDrawable(drawables.get(position));
-        Animation fadein = AnimationUtils.loadAnimation(ct, R.anim.anim);
+        Animation fadein = AnimationUtils.loadAnimation(ct, R.anim.animation_popup_enter);
         holder.linearLayout.setAnimation(fadein);
+
     }
 
     @Override

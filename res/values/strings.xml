@@ -55,7 +55,7 @@
     <string name="alerttitle">Accessibility Service</string>
     <string name="perminfo">Allow this permission for us to give app actions</string>
     <string name="pls">Please Enter the Pin correctly</string>
-    <string name="pinsuc">Pin Created Successfully</string>
+    <string name="pinsuc">Pin Created Successfully and app will restart again</string>
     <string name="pinwrg">Enter pin correctly</string>
     <string name="tasklist">Task List</string>
     <string name="deletemsg">Do you want to permanently delete all app history?</string>
@@ -82,5 +82,18 @@
     <string name="listapp">Listing apps</string>
     <string name="listappdesc">Please wait, we are listing your apps...</string>
     <string name="source_code">Source Code</string>
-
+    <string name="unindesc">Check if you want to prevent kids from uninstalling this application</string>
+    <string name="uninstit">Prevent uninstalling</string>
+    <string name="h1">To delete any task click this button</string>
+    <string name="h2">Click this button to add new task to prevent child from using app</string>
+    <string name="h3">Enable this service to give our uninterrupted service </string>
+    <string name="h4">Our service name looks like this.You can click to enable it</string>
+    <string name="h5">Create a pin then only you can use this awesome application</string>
+    <string name="h6">You can see apps history in this view. Click this button to delete all history</string>
+    <string name="h7">Warning: if you check this button then all running tasks will be  paused</string>
+    <string name="h8">Select app and turn this switch on to block permanently selected app</string>
+    <string name="h9">You can give specified time to enable this app after finishing that time the app will be blocked. Be sure to turn on button</string>
+    <string name="h10">You can block app in specified time interval and set week days. Be sure to turn on button</string>
+    <string name="h11">Check the week days to block the particular application</string>
+    <string name="help">help</string>
 </resources>

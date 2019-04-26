@@ -4,11 +4,9 @@ package com.nizam.training.parentalcontrol;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
@@ -36,7 +34,6 @@ public class AppSettingActivity extends AppCompatActivity {
     ToggleButton tb1, tb2;
     int hours, minutes;
     MyDB myDB;
-    WifiReceiver wifiReceiver;
     RelativeLayout relativeLayout;
     boolean weekSelector;
 
@@ -81,10 +78,6 @@ public class AppSettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_app_setting);
         relativeLayout = findViewById(R.id.rell);
         startAnimations();
-        WifiReceiver m;
-        m = new WifiReceiver();
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        IntentFilter inf = new IntentFilter();
         final String[] weeks = getResources().getStringArray(R.array.weeks);
         final boolean[] checked1 = new boolean[weeks.length];
         week1 = new boolean[weeks.length];
@@ -118,12 +111,6 @@ public class AppSettingActivity extends AppCompatActivity {
                 break;
             case "bluetooth":
                 imageView.setImageResource(R.drawable.ic_bluetooth_audio_black_24dp);
-                break;
-            case "call":
-                imageView.setImageResource(R.drawable.ic_call_missed_outgoing_black_24dp);
-                break;
-            case "data":
-                imageView.setImageResource(R.drawable.ic_perm_data_setting_black_24dp);
                 break;
             default:
                 imageView.setImageBitmap(bitmap);
@@ -251,7 +238,6 @@ public class AppSettingActivity extends AppCompatActivity {
                     deActiveTime.setText(R.string._00_00);
                     myDB.updateData(package_name, HoursOfDay, 0);
                     myDB.updateData(package_name, MinutesOfDay, 0);
-
                 } else {
                     firstTime.setEnabled(false);
                     secondTime.setEnabled(false);

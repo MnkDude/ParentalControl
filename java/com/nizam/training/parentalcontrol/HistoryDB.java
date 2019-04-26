@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class HistoryDB extends SQLiteOpenHelper {
     }
 
     ArrayList<String> getData(String colName, boolean needOne) {
-        SharedPreferences sf = context.getSharedPreferences("home", Context.MODE_PRIVATE);
+        SharedPreferences sf = PreferenceManager.getDefaultSharedPreferences(context);
         dbb = getReadableDatabase();
         Cursor cr;
         ArrayList<String> arrayList = new ArrayList<>();

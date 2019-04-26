@@ -3,17 +3,11 @@
     package="com.nizam.training.parentalcontrol">
 
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.Manifest.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -21,9 +15,25 @@
         android:icon="@mipmap/m"
         android:label="@string/app_name"
         android:logo="@mipmap/ico"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ogimage_round1"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <receiver
+            android:name=".DevAdmRec"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.DEVICE_ADMIN_DISABLE_REQUESTED" />
+                <action android:name="android.app.action.DEVICE_ADMIN_DISABLED" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".AboutActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -33,7 +43,6 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
         <activity android:name=".AppHistoryActivity" />
 
         <receiver
@@ -58,7 +67,6 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
         <activity android:name=".AppSettingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -83,7 +91,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="Login"
-            android:theme="@style/MyTheme">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -92,7 +100,7 @@
         <activity
             android:name=".SignupActivity"
             android:label="Create Pin"
-            android:theme="@style/MyTheme">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
 
