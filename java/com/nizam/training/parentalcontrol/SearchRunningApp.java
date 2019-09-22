@@ -45,7 +45,7 @@ public class SearchRunningApp extends BroadcastReceiver {
                     int HoursOfDay = myDB.getData(AppSettingActivity.HoursOfDay, pack_name);
                     int MinutesOfHours = myDB.getData(AppSettingActivity.MinutesOfDay, pack_name);
                     int timer = HoursOfDay * 60 + MinutesOfHours;
-                    int intweek1[] = AppSettingActivity.strToInt(myDB.getWeekData(AppSettingActivity.NoOfdayInWeek1, pack_name));
+                    int[] intweek1 = AppSettingActivity.strToInt(myDB.getWeekData(AppSettingActivity.NoOfdayInWeek1, pack_name));
                     Calendar calendar = Calendar.getInstance();
                     if (timer != 0) {
                         for (int i1 : intweek1) {
